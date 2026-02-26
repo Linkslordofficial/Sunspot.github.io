@@ -1,10 +1,313 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Site</title>
+<meta charset="UTF-8">
+<title>Neon Download Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root{
+  --bg:#000;
+  --card:#0b0b0b;
+  --text:#fff;
+  --neon:#00ff6a;
+}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* HEADER */
+.header{
+  padding:15px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  border-bottom:1px solid var(--neon);
+  position:relative;
+}
+.header input{
+  position:absolute;
+  left:15px;
+  top:12px;
+  width:140px;
+  padding:6px;
+  background:#000;
+  border:1px solid var(--neon);
+  color:var(--neon);
+  border-radius:6px;
+}
+
+/* TOP AD */
+.ad-top{
+  margin:10px;
+  padding:10px;
+  border:1px solid var(--neon);
+  border-radius:8px;
+  text-align:center;
+}
+
+/* GRID */
+.container{
+  padding:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:15px;
+}
+
+/* POST */
+.post{
+  background:var(--card);
+  border-radius:10px;
+  overflow:hidden;
+  text-align:center;
+  box-shadow:0 0 12px rgba(0,255,106,.15);
+}
+.post img{
+  width:210px;
+  height:130px;
+  object-fit:cover;
+}
+.post h3{
+  margin:10px;
+  font-size:15px;
+}
+.btn{
+  margin:10px;
+  padding:10px;
+  background:var(--neon);
+  color:#000;
+  font-weight:bold;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* GRID AD */
+.grid-ad{
+  grid-column:1/-1;
+}
+.grid-ad-box{
+  background:#000;
+  border:1px dashed var(--neon);
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 0 15px rgba(0,255,106,.3);
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.popup-box{
+  background:var(--card);
+  width:90%;
+  max-width:380px;
+  padding:15px;
+  border-radius:10px;
+  position:relative;
+  text-align:center;
+}
+.popup-box img{
+  width:100%;
+  border-radius:8px;
+}
+.link-btn{
+  display:block;
+  margin:8px 0;
+  padding:10px;
+  background:var(--neon);
+  color:#000;
+  font-weight:bold;
+  border-radius:6px;
+  text-decoration:none;
+}
+.close{
+  position:absolute;
+  top:8px;
+  right:12px;
+  font-size:26px;
+  color:var(--neon);
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <h1>Hello 🚀</h1>
-  <button onclick="alert('Working')">Click</button>
+
+<div class="header">
+  <input type="search" placeholder="Search..." oninput="searchPost(this.value)">
+  Tango India
+</div>
+
+<!-- TOP BANNER AD -->
+<div class="ad-top">
+  <!-- TOP BANNER AD CODE HERE -->
+  111111
+</div>
+
+<div class="container">
+
+<!-- POST 1 -->
+<div class="post">
+  <img src="https://i.ibb.co/cSpmVmD6/2560x1440-207.webp">
+  <h3>Tejaswini</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie One',
+    'https://i.ibb.co/cSpmVmD6/2560x1440-207.webp',
+    [
+      {t:'Viseo 1',u:'https://luluvid.com/vyy3u7wm4pdp'},
+      {t:'Video 2',u:'https://luluvid.com/6ajm07znkd3i'},
+      {t:'Video 3',u:'https://luluvid.com/i7g3pmvzo2m2'}
+    ]
+  )">Download</div>
+</div>
+
+<!-- POST 2 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Two</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie Two',
+    'https://via.placeholder.com/300x400',
+    [
+      {t:'480p',u:'#'},
+      {t:'720p',u:'#'},
+      {t:'1080p',u:'#'}
+    ]
+  )">Download</div>
+</div>
+
+<!-- POST 3 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Three</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie Three',
+    'https://via.placeholder.com/300x400',
+    [{t:'Download',u:'#'}]
+  )">Download</div>
+</div>
+
+<!-- POST 4 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Four</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie Four',
+    'https://via.placeholder.com/300x400',
+    [{t:'Main Link',u:'#'}]
+  )">Download</div>
+</div>
+
+<!-- POST 5 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Five</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie Five',
+    'https://via.placeholder.com/300x400',
+    [{t:'Server A',u:'#'},{t:'Server B',u:'#'}]
+  )">Download</div>
+</div>
+
+<!-- POST 6 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Six</h3>
+  <div class="btn" onclick="openPopup(
+    'Movie Six',
+    'https://via.placeholder.com/300x400',
+    [{t:'Download',u:'#'}]
+  )">Download</div>
+</div>
+
+<!-- GRID AD AFTER 6 POSTS -->
+<div class="grid-ad">
+  <div class="grid-ad-box">
+    <!-- GRID AD CODE HERE -->
+   11111
+  </div>
+</div>
+
+<!-- POST 7 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Seven</h3>
+  <div class="btn" onclick="openPopup('Movie Seven','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+</div>
+
+<!-- POST 8 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Eight</h3>
+  <div class="btn" onclick="openPopup('Movie Eight','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+</div>
+
+<!-- POST 9 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Nine</h3>
+  <div class="btn" onclick="openPopup('Movie Nine','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+</div>
+
+<!-- POST 10 -->
+<div class="post">
+  <img src="https://via.placeholder.com/300x400">
+  <h3>Movie Ten</h3>
+  <div class="btn" onclick="openPopup('Movie Ten','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+</div>
+  
+  <!-- GRID AD AFTER 6 POSTS -->
+<div class="grid-ad">
+  <div class="grid-ad-box">
+    <!-- GRID AD CODE HERE -->
+    11111
+  </div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+  <div class="popup-box">
+    <span class="close" onclick="popup.style.display='none'">×</span>
+    <img id="pImg">
+    <h2 id="pTitle"></h2>
+    <div id="links"></div>
+  </div>
+</div>
+
+<script>
+function openPopup(title,img,arr){
+  popup.style.display="flex";
+  pTitle.innerText=title;
+  pImg.src=img;
+  links.innerHTML="";
+  arr.forEach(l=>{
+    let a=document.createElement("a");
+    a.className="link-btn";
+    a.href=l.u;
+    a.target="_blank";
+    a.innerText=l.t;
+    links.appendChild(a);
+  });
+}
+function searchPost(v){
+  v=v.toLowerCase();
+  document.querySelectorAll(".post").forEach(p=>{
+    p.style.display=p.innerText.toLowerCase().includes(v)?"":"none";
+  });
+}
+</script>
+
 </body>
 </html>
