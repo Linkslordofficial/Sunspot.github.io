@@ -1,312 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Neon Download Page</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Search Hub | Premium</title>
+  <meta name="description" content="Search and discover premium video content">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<style>
-:root{
-  --bg:#000;
-  --card:#0b0b0b;
-  --text:#fff;
-  --neon:#00ff6a;
-}
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
 
-/* HEADER */
-.header{
-  padding:15px;
-  text-align:center;
-  font-size:20px;
-  font-weight:bold;
-  border-bottom:1px solid var(--neon);
-  position:relative;
-}
-.header input{
-  position:absolute;
-  left:15px;
-  top:12px;
-  width:140px;
-  padding:6px;
-  background:#000;
-  border:1px solid var(--neon);
-  color:var(--neon);
-  border-radius:6px;
-}
+    /* Modern Glass Morphism Header */
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
 
-/* TOP AD */
-.ad-top{
-  margin:10px;
-  padding:10px;
-  border:1px solid var(--neon);
-  border-radius:8px;
-  text-align:center;
-}
+    /* Enhanced Ad Containers */
+    .ad-container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin: 15px auto;
+      padding: 20px;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
 
-/* GRID */
-.container{
-  padding:15px;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:15px;
-}
+    .ad-container:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.08);
+    }
 
-/* POST */
-.post{
-  background:var(--card);
-  border-radius:10px;
-  overflow:hidden;
-  text-align:center;
-  box-shadow:0 0 12px rgba(0,255,106,.15);
-}
-.post img{
-  width:210px;
-  height:130px;
-  object-fit:cover;
-}
-.post h3{
-  margin:10px;
-  font-size:15px;
-}
-.btn{
-  margin:10px;
-  padding:10px;
-  background:var(--neon);
-  color:#000;
-  font-weight:bold;
-  border-radius:6px;
-  cursor:pointer;
-}
+    /* Modern Search Section */
+    .search-section {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
 
-/* GRID AD */
-.grid-ad{
-  grid-column:1/-1;
-}
-.grid-ad-box{
-  background:#000;
-  border:1px dashed var(--neon);
-  border-radius:10px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 0 15px rgba(0,255,106,.3);
-}
+    .search-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
 
-/* POPUP */
-.popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-.popup-box{
-  background:var(--card);
-  width:90%;
-  max-width:380px;
-  padding:15px;
-  border-radius:10px;
-  position:relative;
-  text-align:center;
-}
-.popup-box img{
-  width:100%;
-  border-radius:8px;
-}
-.link-btn{
-  display:block;
-  margin:8px 0;
-  padding:10px;
-  background:var(--neon);
-  color:#000;
-  font-weight:bold;
-  border-radius:6px;
-  text-decoration:none;
-}
-.close{
-  position:absolute;
-  top:8px;
-  right:12px;
-  font-size:26px;
-  color:var(--neon);
-  cursor:pointer;
-}
-</style>
+    .search-title {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #fff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    #searchInput:focus {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    #searchInput::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .search-btn {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ff6b6b, #feca57);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .search-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Quick Filters */
+    .quick-filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-chip:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Results Grid */
+    #posts {
+      display: none;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .post-wrap {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .post {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .post iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .post-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 15px 0;
+      line-height: 1.4;
+      color: #fff;
+      flex-grow: 1;
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #00b09b, #96c93d);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 176, 155, 0.3);
+    }
+
+    /* No Results */
+    #noResult {
+      display: none;
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    .no-result-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .no-result-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .no-result-sub {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .clear-search {
+      padding: 10px 25px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .clear-search:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Loading Spinner */
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .search-title {
+        font-size: 1.4rem;
+      }
+      
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .post-wrap {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="header">
-  <input type="search" placeholder="Search..." oninput="searchPost(this.value)">
-  Tango India
+<header>🎬 Video Search Hub Premium</header>
+
+<div class="ad-container">
+  <span>📢 TOP BANNER AD - Your ad could be here</span>
 </div>
 
-<!-- TOP BANNER AD -->
-<div class="ad-top">
-  <!-- TOP BANNER AD CODE HERE -->
-  111111
-</div>
-
-<div class="container">
-
-<!-- POST 1 -->
-<div class="post">
-  <img src="https://i.ibb.co/cSpmVmD6/2560x1440-207.webp">
-  <h3>Tejaswini</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie One',
-    'https://i.ibb.co/cSpmVmD6/2560x1440-207.webp',
-    [
-      {t:'Viseo 1',u:'https://luluvid.com/vyy3u7wm4pdp'},
-      {t:'Video 2',u:'https://luluvid.com/6ajm07znkd3i'},
-      {t:'Video 3',u:'https://luluvid.com/i7g3pmvzo2m2'}
-    ]
-  )">Download</div>
-</div>
-
-<!-- POST 2 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Two</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie Two',
-    'https://via.placeholder.com/300x400',
-    [
-      {t:'480p',u:'#'},
-      {t:'720p',u:'#'},
-      {t:'1080p',u:'#'}
-    ]
-  )">Download</div>
-</div>
-
-<!-- POST 3 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Three</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie Three',
-    'https://via.placeholder.com/300x400',
-    [{t:'Download',u:'#'}]
-  )">Download</div>
-</div>
-
-<!-- POST 4 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Four</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie Four',
-    'https://via.placeholder.com/300x400',
-    [{t:'Main Link',u:'#'}]
-  )">Download</div>
-</div>
-
-<!-- POST 5 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Five</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie Five',
-    'https://via.placeholder.com/300x400',
-    [{t:'Server A',u:'#'},{t:'Server B',u:'#'}]
-  )">Download</div>
-</div>
-
-<!-- POST 6 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Six</h3>
-  <div class="btn" onclick="openPopup(
-    'Movie Six',
-    'https://via.placeholder.com/300x400',
-    [{t:'Download',u:'#'}]
-  )">Download</div>
-</div>
-
-<!-- GRID AD AFTER 6 POSTS -->
-<div class="grid-ad">
-  <div class="grid-ad-box">
-    <!-- GRID AD CODE HERE -->
-   11111
+<div class="search-section">
+  <div class="search-box">
+    <div class="search-title">🔍 Search Your Favorite Content</div>
+    <div class="input-group">
+      <input type="text" id="searchInput" placeholder="Enter code (e.g., VK123, song-×456=mp3)" autocomplete="off">
+      <button class="search-btn" onclick="searchPost()">
+        <span>🔎</span> Search Now
+      </button>
+    </div>
+    
+    <div class="quick-filters">
+      <span class="filter-chip" onclick="quickSearch('VK123')">VK123</span>
+      <span class="filter-chip" onclick="quickSearch('song-×456=mp3')">Song Two</span>
+      <span class="filter-chip" onclick="clearSearch()">Show All</span>
+    </div>
   </div>
 </div>
 
-<!-- POST 7 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Seven</h3>
-  <div class="btn" onclick="openPopup('Movie Seven','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+<div id="noResult">
+  <div class="no-result-icon">😕</div>
+  <div class="no-result-text">No Results Found</div>
+  <div class="no-result-sub">Try another search term or browse all content</div>
+  <button class="clear-search" onclick="clearSearch()">View All Videos</button>
 </div>
 
-<!-- POST 8 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Eight</h3>
-  <div class="btn" onclick="openPopup('Movie Eight','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <p style="margin-top: 15px;">Searching...</p>
 </div>
 
-<!-- POST 9 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Nine</h3>
-  <div class="btn" onclick="openPopup('Movie Nine','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
-</div>
+<div id="posts">
+  <div class="posts-grid">
+    <!-- POST 1 -->
+    <div class="post-wrap" data-code="VK123" data-title="Pure Taboo" data-category="adult">
+      <div class="post">
+        <div class="video-container">
+          <iframe src="https://minochinos.com/embed/t0c1haekdi7m" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="post-meta">
+          <span class="badge">🔥 New</span>
+          <span>⭐ 4.8</span>
+        </div>
+        <div class="post-title">PURE TABOO: Priest Convinces Teen to Give Her Anal Virginity</div>
+        <a class="download-btn" href="#" target="_blank" onclick="handleDownload(event, this)">
+          <span>📥</span> Download Now
+        </a>
+      </div>
+      <div class="ad-container" style="margin-top: 15px;">
+        <div data-banner-id="6090960"></div>
+        <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="371719"></script>
+      </div>
+    </div>
 
-<!-- POST 10 -->
-<div class="post">
-  <img src="https://via.placeholder.com/300x400">
-  <h3>Movie Ten</h3>
-  <div class="btn" onclick="openPopup('Movie Ten','https://via.placeholder.com/300x400',[{t:'Download',u:'#'}])">Download</div>
-</div>
-  
-  <!-- GRID AD AFTER 6 POSTS -->
-<div class="grid-ad">
-  <div class="grid-ad-box">
-    <!-- GRID AD CODE HERE -->
-    11111
+    <!-- POST 2 -->
+    <div class="post-wrap" data-code="song-×456=mp3" data-title="Song Two" data-category="music">
+      <div class="post">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/oHg5SJYRHA0" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="post-meta">
+          <span class="badge">🎵 Music</span>
+          <span>⭐ 4.5</span>
+        </div>
+        <div class="post-title">Song Two - Official Music Video</div>
+        <a class="download-btn" href="#" target="_blank" onclick="handleDownload(event, this)">
+          <span>📥</span> Download MP3
+        </a>
+      </div>
+      <div class="ad-container" style="margin-top: 15px;">📺 POST BANNER AD</div>
+    </div>
   </div>
 </div>
 
-</div>
-
-<!-- POPUP -->
-<div id="popup" class="popup">
-  <div class="popup-box">
-    <span class="close" onclick="popup.style.display='none'">×</span>
-    <img id="pImg">
-    <h2 id="pTitle"></h2>
-    <div id="links"></div>
-  </div>
-</div>
+<div class="ad-container">📢 BOTTOM BANNER AD - Premium placement</div>
 
 <script>
-function openPopup(title,img,arr){
-  popup.style.display="flex";
-  pTitle.innerText=title;
-  pImg.src=img;
-  links.innerHTML="";
-  arr.forEach(l=>{
-    let a=document.createElement("a");
-    a.className="link-btn";
-    a.href=l.u;
-    a.target="_blank";
-    a.innerText=l.t;
-    links.appendChild(a);
-  });
+function cleanCode(str) {
+  if (!str) return '';
+  return str.replace(/[^a-zA-Z0-9\-×=]/g, '').trim();
 }
-function searchPost(v){
-  v=v.toLowerCase();
-  document.querySelectorAll(".post").forEach(p=>{
-    p.style.display=p.innerText.toLowerCase().includes(v)?"":"none";
-  });
+
+function showLoader() {
+  document.getElementById('loader').style.display = 'block';
 }
+
+function hideLoader() {
+  document.getElementById('loader').style.display = 'none';
+}
+
+function handleDownload(event, element) {
+  event.preventDefault();
+  // Simulate download tracking
+  console.log('Download clicked:', element.href);
+  
+  // Show toast notification (you can enhance this)
+  alert('⏳ Preparing your download...');
+  
+  // In production, redirect to actual download
+  // window.location.href = element.href;
+}
+
+function quickSearch(code) {
+  document.getElementById('searchInput').value = code;
+  searchPost();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  searchPost(true); // Pass true to show all
+}
+
+function searchPost(showAll = false) {
+  let inputRaw = document.getElementById('searchInput').value;
+  let input = showAll ? '' : cleanCode(inputRaw);
+  
+  let posts = document.getElementsByClassName('post-wrap');
+  let postsContainer = document.getElementById('posts');
+  let noResult = document.getElementById('noResult');
+  let loader = document.getElementById('loader');
+  
+  // Show loading animation
+  postsContainer.style.display = 'none';
+  noResult.style.display = 'none';
+  loader.style.display = 'block';
+  
+  // Simulate search delay for better UX
+  setTimeout(() => {
+    let found = false;
+    
+    for(let i = 0; i < posts.length; i++) {
+      let codeRaw = posts[i].getAttribute('data-code');
+      let titleRaw = posts[i].getAttribute('data-title');
+      let code = cleanCode(codeRaw);
+      let title = titleRaw ? titleRaw.toLowerCase() : '';
+      
+      // Enhanced search: match by code OR title
+      let matchesCode = input && input === code;
+      let matchesTitle = input && title.includes(input.toLowerCase());
+      let shouldShow = showAll || (!input && showAll) || matchesCode || matchesTitle;
+      
+      if(shouldShow) {
+        posts[i].style.display = 'block';
+        found = true;
+      } else {
+        posts[i].style.display = 'none';
+      }
+    }
+    
+    // Hide loader
+    loader.style.display = 'none';
+    
+    // Show results or no result message
+    if(found) {
+      postsContainer.style.display = 'block';
+      noResult.style.display = 'none';
+      
+      // Smooth scroll to results
+      postsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      postsContainer.style.display = 'none';
+      noResult.style.display = 'block';
+    }
+  }, 500); // Simulated delay
+}
+
+// Handle Enter key in search input
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    searchPost();
+  }
+});
+
+// Initialize - show all posts on load
+window.addEventListener('load', function() {
+  clearSearch();
+});
+</script>
+
+<!-- Add analytics tracking -->
+<script>
+// Simple page view tracking
+console.log('Page loaded:', new Date().toISOString());
 </script>
 
 </body>
